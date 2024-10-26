@@ -1,4 +1,6 @@
-﻿using Autodesk.Revit.UI;
+﻿using Arrow.Revit.Document;
+using Autodesk.Revit.UI;
+using Messages;
 using System;
 using System.Linq;
 
@@ -30,6 +32,10 @@ namespace RevitAddinSample
 
             // Add the button to the panel
             panel.AddItem(buttonData);
+
+            var messageProvider = new MessageProvider();
+            var documentProvider = new DocumentProvider(application, messageProvider);
+
             return Result.Succeeded;
         }
 
