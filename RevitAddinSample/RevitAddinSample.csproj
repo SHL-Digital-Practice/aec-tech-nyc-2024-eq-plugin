@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+	  <PlatformTarget>x64</PlatformTarget>
+	  <UseWPF>true</UseWPF>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2025.0.0" ExcludeAssets="runtime"/>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2045.28" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PWPluginSamples.Shared\PWPluginSamples.Shared.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('Debug'))">
+    <OutputPath>$(AppData)\Autodesk\Revit\Addins\2025\PWRevitAddinSample\$(Version)</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  
+  <Target Name="CopyFiles" AfterTargets="PostBuildEvent" Condition="$(Configuration.Contains('Debug'))">
+    <Copy SourceFiles="./RevitAddinSample.addin" DestinationFolder="$(AppData)\Autodesk\Revit\Addins\2025\" />
+  </Target>
+</Project>

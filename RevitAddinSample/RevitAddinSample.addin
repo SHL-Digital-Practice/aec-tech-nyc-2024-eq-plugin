@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>RevitAddinSample</Name>
+    <Assembly>PWRevitAddinSample\RevitAddinSample.dll</Assembly>
+    <AddInId>2e047380-859d-40ab-b4ee-6219a7dcf001</AddInId>
+    <FullClassName>RevitAddinSample.App</FullClassName>
+    <VendorId>PW</VendorId>
+    <VendorDescription>Perkins and Will, perkinswill.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>

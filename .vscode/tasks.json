@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build: rhino",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "build",
+        "-clp:NoSummary",
+        "${workspaceFolder}\\RhinoPluginTemplate\\RhinoPluginTemplate.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "group": "build"
+    },
+    {
+      "label": "build: revit",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "build",
+        "-clp:NoSummary",
+        "${workspaceFolder}\\RevitAddinSample\\RevitAddinSample.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "group": "build"
+    }
+  ]
+}
