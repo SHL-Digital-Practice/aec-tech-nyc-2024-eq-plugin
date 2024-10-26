@@ -1,0 +1,12 @@
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\bin\Debug\net7.0-windows\PWPluginSamples.Shared.deps.json
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\bin\Debug\net7.0-windows\PWPluginSamples.Shared.dll
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\bin\Debug\net7.0-windows\PWPluginSamples.Shared.pdb
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\PWPluginSamples.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\PWPluginSamples.Shared.AssemblyInfoInputs.cache
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\PWPluginSamples.Shared.AssemblyInfo.cs
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\PWPluginSamples.Shared.csproj.CoreCompileInputs.cache
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\PWPluginSamples.Shared.sourcelink.json
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\PWPluginSamples.Shared.dll
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\refint\PWPluginSamples.Shared.dll
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\PWPluginSamples.Shared.pdb
+C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\obj\Debug\net7.0-windows\ref\PWPluginSamples.Shared.dll

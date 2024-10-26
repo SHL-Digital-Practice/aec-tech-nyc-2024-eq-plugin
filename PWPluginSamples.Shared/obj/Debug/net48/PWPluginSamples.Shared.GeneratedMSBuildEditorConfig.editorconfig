@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = PWPluginSamples.Shared
 build_property.ProjectDir = C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

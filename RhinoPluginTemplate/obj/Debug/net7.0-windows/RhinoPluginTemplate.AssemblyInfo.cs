@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Description of RhinoPluginTemplate")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+8f4341bab58205ac5628b89014d85dacb73da03b")]
 [assembly: System.Reflection.AssemblyProductAttribute("RhinoPluginTemplate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RhinoPluginTemplate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

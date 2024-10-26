@@ -7,3 +7,5 @@ build_property.ApplicationUseCompatibleTextRendering =
 build_property.ApplicationVisualStyles = 
 build_property.RootNamespace = RhinoPluginTemplate
 build_property.ProjectDir = C:\01_Repos\aec-tech-nyc-2024-eq-plugin\RhinoPluginTemplate\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\01_Repos\\aec-tech-nyc-2024-eq-plugin\\PWPluginSamples.Shared\\PWPluginSamples.Shared.csproj": {}
+  },
+  "projects": {
+    "C:\\01_Repos\\aec-tech-nyc-2024-eq-plugin\\PWPluginSamples.Shared\\PWPluginSamples.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\01_Repos\\aec-tech-nyc-2024-eq-plugin\\PWPluginSamples.Shared\\PWPluginSamples.Shared.csproj",
+        "projectName": "PWPluginSamples.Shared",
+        "projectPath": "C:\\01_Repos\\aec-tech-nyc-2024-eq-plugin\\PWPluginSamples.Shared\\PWPluginSamples.Shared.csproj",
+        "packagesPath": "C:\\Users\\bobad\\.nuget\\packages\\",
+        "outputPath": "C:\\01_Repos\\aec-tech-nyc-2024-eq-plugin\\PWPluginSamples.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "C:\\Users\\bobad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48",
+          "net7.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0-windows7.0": {
+            "targetAlias": "net7.0-windows",
+            "projectReferences": {}
+          },
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+        },
+        "net48": {
+          "targetAlias": "net48",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
