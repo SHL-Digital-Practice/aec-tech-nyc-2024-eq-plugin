@@ -19,7 +19,7 @@ namespace Arrow.Revit.Document
 
         private void OnDocumentChanged(object sender, DocumentChangedEventArgs e)
         {
-            if (!messageProvider.Enabled) { return; }
+            // if (!messageProvider.Enabled) { return; }
 
             var addedElementIds = e.GetAddedElementIds();
             var modifiedElementIds = e.GetModifiedElementIds();

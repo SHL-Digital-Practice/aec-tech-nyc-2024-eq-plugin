@@ -36,6 +36,9 @@ namespace RevitAddinSample
             var messageProvider = new MessageProvider();
             var documentProvider = new DocumentProvider(application, messageProvider);
 
+            documentProvider.WebView = WebViewContainer.webView;
+
+
             return Result.Succeeded;
         }
 

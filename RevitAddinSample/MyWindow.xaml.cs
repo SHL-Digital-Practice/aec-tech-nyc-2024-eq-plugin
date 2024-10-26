@@ -37,9 +37,11 @@ namespace RevitAddinSample
             await webView.EnsureCoreWebView2Async(environment);
             webView.CoreWebView2.OpenDevToolsWindow();
 
-            var bridge = new Bridge(webView, myExternalEventWrapper, uiApplication);
-            webView.CoreWebView2.AddHostObjectToScript("bridge", bridge);
+            // var bridge = new Bridge(webView, myExternalEventWrapper, uiApplication);
+            // webView.CoreWebView2.AddHostObjectToScript("bridge", bridge);
             webView.CoreWebView2.Navigate("http://localhost:3000");
+
+            WebViewContainer.webView = webView;
 
         }
 
