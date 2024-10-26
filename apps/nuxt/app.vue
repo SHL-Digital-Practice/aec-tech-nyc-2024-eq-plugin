@@ -2,8 +2,6 @@
   <div>
     <Sliders />
   </div>
-
-  <button @click="connectRevitMessages(sessionId)">connect</button>
 </template>
 <script setup lang="ts">
 import { io } from "socket.io-client";

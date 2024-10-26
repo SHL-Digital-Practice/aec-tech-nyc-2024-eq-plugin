@@ -129,13 +129,13 @@
       </div>
     </div>
 
-    <button
+    <Button
       @click="addSpace"
       class="mt-8 mx-auto block bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300 flex items-center justify-center"
     >
       <PlusCircle class="w-5 h-5 mr-2" />
       Add Space Type
-    </button>
+    </Button>
 
     <!-- Tooltip -->
     <div
@@ -157,58 +157,17 @@
       </button>
     </div>
 
-    <!-- Settings Panel -->
-    <transition name="slide">
-      <div
-        v-if="settingsOpen"
-        class="fixed right-0 top-0 h-full w-80 bg-white shadow-lg p-6 overflow-y-auto"
-      >
-        <h2 class="text-2xl font-bold mb-4">Settings</h2>
-        <button
-          @click="toggleSettings"
-          class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-          aria-label="Close Settings"
-        >
-          <X class="w-6 h-6" />
-        </button>
-
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-2">Notifications</h3>
-          <ul class="space-y-2">
-            <li
-              v-for="notification in notifications"
-              :key="notification.id"
-              :class="[
-                'p-3 rounded-lg',
-                notification.read ? 'bg-gray-100' : 'bg-blue-100',
-              ]"
-            >
-              <div class="flex items-center">
-                <img
-                  :src="getUserAvatar(notification.user)"
-                  :alt="notification.user"
-                  class="w-8 h-8 rounded-full mr-2"
-                />
-                <div>
-                  <p class="text-sm text-gray-800">
-                    {{ notification.message }}
-                  </p>
-                  <p class="text-xs text-gray-500 mt-1">
-                    {{ notification.time }}
-                  </p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </transition>
+    <Notifications
+      class="z-30"
+      v-model:settings-open="settingsOpen"
+      :users="connectedUsers"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
-import { PlusCircle, Settings, X } from "lucide-vue-next";
+import { PlusCircle, Settings } from "lucide-vue-next";
 
 const spaces = ref([
   {
@@ -236,7 +195,7 @@ const spaces = ref([
     target: 12,
     diff: 3,
     syncedValue: 13,
-    syncedBy: "Victor",
+    syncedBy: null,
   },
   {
     id: 4,
@@ -270,23 +229,6 @@ const connectedUsers = ref([
     name: "Mario Romero",
     avatar:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mario%20Romero-DqlVKba19kVahwvRSu3ds6cTSpPgdW.jfif",
-  },
-]);
-
-const notifications = ref([
-  {
-    id: 1,
-    user: "Mario Romero",
-    message: "Mario has changed the target for Classroom",
-    time: "2 hours ago",
-    read: false,
-  },
-  {
-    id: 2,
-    user: "Gigi Singh",
-    message: "Gigi has modified Classroom",
-    time: "1 day ago",
-    read: true,
   },
 ]);
 
@@ -365,16 +307,6 @@ const getUserAvatar = (name) => {
 </script>
 
 <style scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.3s ease;
-}
-
-.slide-enter-from,
-.slide-leave-to {
-  transform: translateX(100%);
-}
-
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
