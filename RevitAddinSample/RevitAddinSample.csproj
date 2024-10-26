@@ -12,6 +12,7 @@
     <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2025.0.0" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2045.28" ExcludeAssets="runtime" />
     <PackageReference Include="SocketIOClient" Version="3.1.2" />
+    <PackageReference Include="System.Net.Requests" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

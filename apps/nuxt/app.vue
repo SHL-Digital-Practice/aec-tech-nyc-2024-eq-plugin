@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Button> button</Button>
     <Sliders />
   </div>
 

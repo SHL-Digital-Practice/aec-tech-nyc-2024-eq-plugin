@@ -35,6 +35,8 @@ namespace Arrow.Revit.Document
                 deletedElementIds.Select(i => i.ToString())
             );
 
+
+
             SendMessageToWebView();
         }
 
