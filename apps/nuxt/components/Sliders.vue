@@ -58,7 +58,14 @@
                   :aria-label="`Target for ${space.type}`"
                 />
               </td>
-              <td class="py-2 text-sm text-white">{{ space.diff }}</td>
+              <td
+                class="py-2 text-md font-semibold"
+                :style="{
+                  color: getMarkerColor(space.current, space.target),
+                }"
+              >
+                {{ space.diff > 0 ? "+" : "" }}{{ space.diff }}
+              </td>
               <td class="py-2">
                 <div class="relative">
                   <input
@@ -78,7 +85,7 @@
                       :style="{ left: `${(space.current / maxValue) * 100}%` }"
                     >
                       <div
-                        class="w-3 h-3 rounded-full"
+                        class="w-4 h-4 rounded-full border-2 border-white"
                         :style="{
                           backgroundColor: getMarkerColor(
                             space.current,
@@ -168,7 +175,7 @@
         class="bg-green-600 text-white p-2 rounded-l-lg hover:bg-green-700 transition duration-300"
         aria-label="Toggle Settings"
       >
-        <Settings class="w-6 h-6" />
+        <Bell class="w-6 h-6" />
       </button>
     </div>
 
@@ -182,7 +189,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { PlusCircle, Settings } from "lucide-vue-next";
+import { PlusCircle, Bell } from "lucide-vue-next";
 
 const spaces = ref([
   {
@@ -305,7 +312,9 @@ const hexToRgb = (hex) => {
 };
 
 const updateDiff = (space) => {
-  space.diff = space.current - space.target;
+  const diff = space.current - space.target;
+
+  space.diff = diff;
 };
 
 const addSpace = () => {
@@ -364,7 +373,7 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 3px;
+  width: 3px !important;
   height: 20px;
   background: white;
   cursor: pointer;
