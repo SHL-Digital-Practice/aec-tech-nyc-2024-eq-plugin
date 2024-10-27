@@ -239,7 +239,22 @@ const spaces = ref([
   },
 ]);
 
-const { participants } = useWebSocket();
+const debouncedFn = useDebounceFn(() => {
+  console.log("Spaces changed", spaces.value);
+  updateTarget();
+}, 200);
+
+watch(
+  spaces,
+  () => {
+    debouncedFn();
+  },
+  {
+    deep: true,
+  }
+);
+
+const { participants, updateTarget } = useWebSocket();
 
 const connectedUsers = ref([
   {

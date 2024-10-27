@@ -10,11 +10,13 @@ const participants = ref<
   }[]
 >([]);
 
+let socket: any = null;
+
 export default function useWebsocket() {
   onMounted(() => {
     const userId = useRoute().query.userId;
 
-    const socket = io(
+    socket = io(
       "http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com",
       { query: { userId } }
     );
@@ -55,5 +57,15 @@ export default function useWebsocket() {
     participants.value = data;
   });
 
-  return { participants };
+  onUnmounted(() => {
+    if (socket) {
+      socket.disconnect();
+    }
+  });
+
+  const updateTarget = () => {
+    socket.emit("update-target");
+  };
+
+  return { participants, updateTarget };
 }

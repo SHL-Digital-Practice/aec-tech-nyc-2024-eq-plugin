@@ -1,6 +1,5 @@
 ﻿using Autodesk.Revit.UI;
 using Document;
-using Messages;
 using System;
 using System.Linq;
 
@@ -29,8 +28,7 @@ namespace RevitAddinSample
 
             panel.AddItem(buttonData);
 
-            var messageProvider = new MessageProvider();
-            var documentProvider = new DocumentProvider(application, messageProvider);
+            var documentProvider = new DocumentProvider(application);
 
             return Result.Succeeded;
         }

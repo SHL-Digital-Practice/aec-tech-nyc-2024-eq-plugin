@@ -6,23 +6,19 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
-using Messages;
 using Microsoft.Web.WebView2.Wpf;
 
 namespace Document
 {
     public class DocumentProvider
     {
-        private readonly IMessageProvider messageProvider;
         public WebView2 WebView { get; set; }
 
-        public DocumentProvider(UIControlledApplication uiControlledApplication, IMessageProvider messageProvider)
+        public DocumentProvider(UIControlledApplication uiControlledApplication)
         {
             uiControlledApplication.ControlledApplication.DocumentChanged += OnDocumentChanged;
             uiControlledApplication.ControlledApplication.DocumentSaved += OnDocumentSaved;
             uiControlledApplication.ControlledApplication.DocumentOpened += OnDocumentOpened;
-
-            this.messageProvider = messageProvider;
         }
 
         private async void OnDocumentOpened(object sender, DocumentOpenedEventArgs e)
@@ -45,7 +41,6 @@ namespace Document
         {
             var roomDataList = RoomHelpers.GetAllRoomData(doc);
             await ElementProvider.CreateElementsAsync(roomDataList);
-            messageProvider.Send("Initial sync completed with all room IDs and areas.", "Initial Sync", roomDataList.Select(r => r.ApplicationId).ToList());
         }
 
         private async Task UpdateElements(DocumentChangedEventArgs e)
@@ -75,8 +70,6 @@ namespace Document
 
             await Task.WhenAll(tasks);
 
-            var message = $"{addedRoomData.Count} elements added, {modifiedRoomData.Count} elements modified, {deletedRoomIds.Count} elements deleted.";
-            messageProvider.Send(message, "Model Changed", addedRoomData.Select(r => r.ApplicationId).ToList(), modifiedRoomData.Select(r => r.ApplicationId).ToList(), deletedRoomIds);
         }
 
         private void SendMessageToWebView()
