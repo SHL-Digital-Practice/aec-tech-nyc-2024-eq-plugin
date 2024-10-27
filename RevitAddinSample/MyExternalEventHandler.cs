@@ -10,7 +10,7 @@ namespace RevitAddinSample
         {
             externalEvent.Run(app =>
             {
-                Document doc = uiApplication.ActiveUIDocument.Document;
+               Autodesk.Revit.DB.Document doc = uiApplication.ActiveUIDocument.Document;
 
                 // Define the start and end points for the wall
                 XYZ startPoint = new XYZ(0, 0, 0); // Start at the origin

@@ -1,57 +1,64 @@
 <template>
-  <div class="min-h-screen bg-gray-100 py-8 px-4 relative">
-    <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">
-      Space Type Target Chart
-    </h1>
+  <div class="min-h-screen bg-neutral-900 py-8 px-4 relative">
+    <div class="flex items-center justify-between px-10">
+      <div class="flex items-center space-x-2">
+        <img :src="'equalizer_logo.svg'" class="w-8 h-8 animate-pulse" />
+        <h1
+          class="text-3xl tracking-widest font-bold text-center text-neutral-50"
+        >
+          EQUALIZER
+        </h1>
+      </div>
 
-    <div class="absolute top-4 right-4 flex space-x-2">
-      <div v-for="user in connectedUsers" :key="user.id" class="relative">
-        <div class="relative w-10 h-10">
-          <img
-            :src="user.avatar"
-            :alt="user.name"
-            class="w-10 h-10 rounded-full border-2 border-white object-cover"
-          />
+      <div class="flex space-x-2">
+        <div v-for="user in connectedUsers" :key="user.id" class="relative">
+          <div class="relative w-10 h-10">
+            <img
+              :src="user.avatar"
+              :alt="user.name"
+              class="w-10 h-10 rounded-full border-2 border-white object-cover"
+            />
 
-          <span
-            class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"
-          ></span>
+            <span
+              class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"
+            ></span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md">
+    <div class="max-w-4xl mx-auto bg-neutral-900 rounded-lg shadow-md">
       <div class="p-6">
         <table class="w-full">
           <thead>
-            <tr class="text-left border-b border-gray-200">
-              <th class="pb-2 font-semibold text-gray-600">Space Type</th>
-              <th class="pb-2 font-semibold text-gray-600">Current</th>
-              <th class="pb-2 font-semibold text-gray-600">Target</th>
-              <th class="pb-2 font-semibold text-gray-600">Diff</th>
-              <th class="pb-2 font-semibold text-gray-600 w-1/2">Range</th>
+            <tr class="text-left border-b border-neutral-200">
+              <th class="pb-2 font-semibold text-white">Space Type</th>
+              <th class="pb-2 font-semibold text-white">Current</th>
+              <th class="pb-2 font-semibold text-white">Target</th>
+              <th class="pb-2 font-semibold text-white">Diff</th>
+              <th class="pb-2 font-semibold text-white w-1/2">Range</th>
             </tr>
           </thead>
           <tbody>
             <tr
               v-for="(space, index) in spaces"
               :key="space.id"
-              :class="{ 'bg-gray-50': index % 2 === 1 }"
+              :class="{ 'bg-neutral-800': index % 2 === 1 }"
             >
-              <td class="py-2 text-sm font-medium text-gray-600">
+              <td class="py-2 px-2 text-sm font-medium text-white">
                 {{ space.type }}
               </td>
-              <td class="py-2 text-sm text-gray-600">{{ space.current }}</td>
-              <td class="py-2 text-sm text-gray-600">
+              <td class="py-2 text-sm text-white">{{ space.current }}</td>
+              <td class="py-2 text-sm text-white">
                 <input
                   type="number"
                   v-model.number="space.target"
                   @input="updateDiff(space)"
-                  class="w-16 px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  class="w-16 px-2 py-1 border bg-transparent border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   :aria-label="`Target for ${space.type}`"
                 />
               </td>
-              <td class="py-2 text-sm text-gray-600">{{ space.diff }}</td>
+              <td class="py-2 text-sm text-white">{{ space.diff }}</td>
               <td class="py-2">
                 <div class="relative">
                   <input
@@ -67,7 +74,7 @@
                   <div class="absolute inset-1 pointer-events-none">
                     <!-- Current value marker -->
                     <div
-                      class="absolute z-20 top-3 transform -translate-y-1/2"
+                      class="absolute z-20 top-3 -ml-2 transform -translate-y-1/2"
                       :style="{ left: `${(space.current / maxValue) * 100}%` }"
                     >
                       <div
@@ -110,28 +117,36 @@
 
     <div class="mt-6 max-w-4xl mx-auto flex justify-center space-x-6">
       <div class="flex items-center">
-        <div class="w-4 h-4 bg-blue-500 mr-2"></div>
-        <span class="text-sm text-gray-600">Under Target</span>
-      </div>
-      <div class="flex items-center">
-        <div class="w-4 h-4 bg-blue-800 mr-2"></div>
-        <span class="text-sm text-gray-600">Meeting Target</span>
+        <div
+          class="w-10 h-4 rounded-full mr-2 border-2 border-white"
+          style="background: linear-gradient(to right, #4835a2, #a7d383)"
+        ></div>
+        <span class="text-sm text-neutral-100">Under Target</span>
       </div>
       <div class="flex items-center">
         <div
-          class="w-4 h-4 bg-gradient-to-r from-orange-500 to-red-500 mr-2"
+          class="w-4 h-4 rounded-full mr-2 border-2 border-white"
+          style="background: linear-gradient(to right, #4ade80, #4ade80)"
         ></div>
-        <span class="text-sm text-gray-600">Over Target</span>
+        <span class="text-sm text-neutral-100">Meeting Target</span>
       </div>
       <div class="flex items-center">
-        <div class="w-4 h-4 border-2 border-gray-400 border-dashed mr-2"></div>
-        <span class="text-sm text-gray-600">Synced Value</span>
+        <div
+          class="w-10 h-4 rounded-full mr-2 border-2 border-white"
+          style="background: linear-gradient(to right, #a7d383, #e53d26)"
+        ></div>
+        <span class="text-sm text-neutral-100">Over Target</span>
+      </div>
+
+      <div class="flex items-center">
+        <div class="w-4 h-4 rounded-full border-2 border-white mr-2"></div>
+        <span class="text-sm text-neutral-100">Synced Value</span>
       </div>
     </div>
 
     <Button
       @click="addSpace"
-      class="mt-8 mx-auto block bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300 flex items-center justify-center"
+      class="mt-8 mx-auto text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center"
     >
       <PlusCircle class="w-5 h-5 mr-2" />
       Add Space Type
@@ -140,17 +155,17 @@
     <!-- Tooltip -->
     <div
       v-if="tooltipVisible"
-      class="absolute bg-gray-800 text-white px-2 py-1 rounded text-xs"
+      class="absolute bg-neutral-800 text-white px-2 py-1 rounded text-xs"
       :style="{ top: `${tooltipY}px`, left: `${tooltipX}px` }"
     >
       Synced by {{ tooltipContent }}
     </div>
 
     <!-- Settings Tab -->
-    <div class="fixed right-0 top-1/2 transform -translate-y-1/2">
+    <div class="fixed right-0 top-14 transform -translate-y-1/2">
       <button
         @click="toggleSettings"
-        class="bg-indigo-600 text-white p-2 rounded-l-lg hover:bg-indigo-700 transition duration-300"
+        class="bg-green-600 text-white p-2 rounded-l-lg hover:bg-green-700 transition duration-300"
         aria-label="Toggle Settings"
       >
         <Settings class="w-6 h-6" />
@@ -252,12 +267,41 @@ const maxValue = computed(() => {
 });
 
 const getMarkerColor = (current, target) => {
-  if (current === target) return "#1E40AF"; // blue for target (same as current)
+  if (current === target) return "#4ade80";
+
   const ratio = current / target;
-  if (ratio < 1) return "#3B82F6"; // lighter blue for under target
-  // Gradient from orange to red for over target
-  const overRatio = Math.min((ratio - 1) / 0.5, 1); // Cap at 50% over
-  return `rgb(255, ${Math.round(165 - overRatio * 165)}, 0)`;
+
+  if (ratio < 0.5) {
+    // Under -50%
+    return "#4835A2";
+  } else if (ratio < 1) {
+    // Between -50% and 100% below target
+    const factor = (ratio - 0.5) / 0.5; // normalize between 0 and 1
+    return interpolateColor("#4835A2", "#A7D383", factor);
+  } else if (ratio < 1.5) {
+    // 100% to 50% above target
+    const factor = (ratio - 1) / 0.5; // normalize between 0 and 1
+    return interpolateColor("#A7D383", "#E53D26", factor);
+  }
+
+  // 50%+ above target
+  return "#E53D26";
+};
+
+const interpolateColor = (startColor, endColor, factor) => {
+  const [r1, g1, b1] = hexToRgb(startColor);
+  const [r2, g2, b2] = hexToRgb(endColor);
+
+  const r = Math.round(r1 + (r2 - r1) * factor);
+  const g = Math.round(g1 + (g2 - g1) * factor);
+  const b = Math.round(b1 + (b2 - b1) * factor);
+
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
+const hexToRgb = (hex) => {
+  const bigint = parseInt(hex.slice(1), 16);
+  return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
 };
 
 const updateDiff = (space) => {
@@ -311,7 +355,7 @@ input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
   height: 2px;
-  background: #ddd;
+  background: white;
   outline: none;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -322,7 +366,7 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 3px;
   height: 20px;
-  background: #1e40af;
+  background: white;
   cursor: pointer;
   border-radius: 25%;
 }
@@ -330,7 +374,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  background: #1e40af;
+  background: white;
   cursor: pointer;
   border-radius: 50%;
 }

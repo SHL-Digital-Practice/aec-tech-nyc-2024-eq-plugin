@@ -3,7 +3,7 @@
   <transition name="slide">
     <div
       v-if="settingsOpen"
-      class="fixed right-0 top-0 h-full w-80 bg-white shadow-lg p-6 overflow-y-auto"
+      class="fixed right-0 top-0 h-full w-80 bg-neutral-800 shadow-lg p-6 overflow-y-auto"
     >
       <button
         @click="toggleSettings"
@@ -14,14 +14,16 @@
       </button>
 
       <div class="mb-6">
-        <h3 class="text-lg font-semibold mb-2">Notifications</h3>
+        <h3 class="text-lg font-semibold mb-2 text-neutral-50">
+          Notifications
+        </h3>
         <ul class="space-y-2">
           <li
             v-for="notification in notifications"
             :key="notification.id"
             :class="[
               'p-3 rounded-lg',
-              notification.read ? 'bg-gray-100' : 'bg-blue-100',
+              notification.read ? 'bg-neutral-100' : 'bg-blue-100',
             ]"
           >
             <div class="flex items-center">
