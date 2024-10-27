@@ -13,7 +13,12 @@ public static class RoomHelpers
             .OfClass(typeof(SpatialElement))
             .WhereElementIsNotElementType()
             .OfType<Room>()
-            .Select(room => new RoomData(room.Id.ToString(), room.Area))
+            .Select(room => new RoomData(
+                room.Id.ToString(),
+                room.Area,
+                room.Name,
+                room.LookupParameter("Department")?.AsString() ?? string.Empty
+            ))
             .ToList();
     }
 
@@ -26,7 +31,14 @@ public static class RoomHelpers
             .OfType<Room>()
             .FirstOrDefault();
 
-        return room != null ? new RoomData(room.Id.ToString(), room.Area) : null;
+        return room != null 
+            ? new RoomData(
+                room.Id.ToString(), 
+                room.Area, 
+                room.Name, 
+                room.LookupParameter("Department")?.AsString() ?? string.Empty
+            ) 
+            : null;
     }
 
     public static List<RoomData> GetRoomDataByIds(Autodesk.Revit.DB.Document doc, List<ElementId> roomIds)
@@ -37,7 +49,12 @@ public static class RoomHelpers
         return new FilteredElementCollector(doc)
             .WherePasses(filter)
             .OfType<Room>()
-            .Select(room => new RoomData(room.Id.ToString(), room.Area))
+            .Select(room => new RoomData(
+                room.Id.ToString(),
+                room.Area,
+                room.Name,
+                room.LookupParameter("Department")?.AsString() ?? string.Empty
+            ))
             .ToList();
     }
 }
