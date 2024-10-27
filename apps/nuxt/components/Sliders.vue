@@ -11,7 +11,7 @@
       </div>
 
       <div class="flex space-x-2">
-        <div v-for="user in connectedUsers" :key="user.id" class="relative">
+        <div v-for="user in participants" :key="user.id" class="relative">
           <div class="relative w-10 h-10">
             <img
               :src="user.avatar"
@@ -239,6 +239,8 @@ const spaces = ref([
   },
 ]);
 
+const { participants } = useWebSocket();
+
 const connectedUsers = ref([
   {
     id: 1,
@@ -258,8 +260,6 @@ const tooltipVisible = ref(false);
 const tooltipContent = ref("");
 const tooltipX = ref(0);
 const tooltipY = ref(0);
-
-const { rooms } = useWebSocket();
 
 const settingsOpen = ref(false);
 
