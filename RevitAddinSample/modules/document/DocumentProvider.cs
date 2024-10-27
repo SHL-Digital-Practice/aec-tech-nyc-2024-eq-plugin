@@ -47,9 +47,12 @@ namespace Document
         {
             Autodesk.Revit.DB.Document doc = e.GetDocument();
 
-            var addedRoomData = RoomHelpers.GetRoomDataByIds(doc, e.GetAddedElementIds().ToList());
-            var modifiedRoomData = RoomHelpers.GetRoomDataByIds(doc, e.GetModifiedElementIds().ToList());
-            var deletedRoomIds = RoomHelpers.GetRoomDataByIds(doc, e.GetDeletedElementIds().ToList()).Select(r => r.ApplicationId).ToList();
+            var addedElements = e.GetAddedElementIds();
+            var modifiedElements = e.GetModifiedElementIds();
+            var deletedElementsIds = e.GetDeletedElementIds().Select(id => id.ToString()).ToList();
+
+            var addedRoomData = RoomHelpers.GetRoomDataByIds(doc, addedElements.ToList());
+            var modifiedRoomData = RoomHelpers.GetRoomDataByIds(doc, modifiedElements.ToList());
             
             var tasks = new List<Task>();
 
@@ -63,9 +66,9 @@ namespace Document
                 tasks.Add(ElementProvider.UpdateElementsAsync(modifiedRoomData));
             }
 
-            if (deletedRoomIds.Any())
+            if (deletedElementsIds.Any())
             {
-                tasks.Add(ElementProvider.DeleteElementsAsync(deletedRoomIds));
+                tasks.Add(ElementProvider.DeleteElementsAsync(deletedElementsIds));
             }
 
             await Task.WhenAll(tasks);

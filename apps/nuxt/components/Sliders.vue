@@ -10,6 +10,8 @@
         </h1>
       </div>
 
+      <Alerts />
+
       <div class="flex space-x-2">
         <div v-for="user in participants" :key="user.id" class="relative">
           <div class="relative w-10 h-10">
@@ -182,7 +184,7 @@
     <Notifications
       class="z-30"
       v-model:settings-open="settingsOpen"
-      :users="connectedUsers"
+      :users="participants"
     />
   </div>
 </template>
@@ -191,57 +193,22 @@
 import { ref, computed } from "vue";
 import { PlusCircle, Bell } from "lucide-vue-next";
 
-const spaces = ref([
-  {
-    id: 1,
-    type: "Type 01",
-    current: 25,
-    target: 26,
-    diff: -1,
-    syncedValue: 24,
-    syncedBy: "Gigi Singh",
-  },
-  {
-    id: 2,
-    type: "Type 02",
-    current: 12,
-    target: 10,
-    diff: 2,
-    syncedValue: 11,
-    syncedBy: "Mario Romero",
-  },
-  {
-    id: 3,
-    type: "Type 03",
-    current: 15,
-    target: 12,
-    diff: 3,
-    syncedValue: 13,
-    syncedBy: null,
-  },
-  {
-    id: 4,
-    type: "Type 04",
-    current: 22,
-    target: 21,
-    diff: 1,
-    syncedValue: 20,
-    syncedBy: null,
-  },
-  {
-    id: 5,
-    type: "Type 05",
-    current: 43,
-    target: 40,
-    diff: 3,
-    syncedValue: 41,
-    syncedBy: null,
-  },
-]);
+const { participants, patchTargets, spaces } = useWebSocket();
+
+const previousTargets = ref(spaces.value.map((space) => space.target));
 
 const debouncedFn = useDebounceFn(() => {
-  console.log("Spaces changed", spaces.value);
-  updateTarget();
+  const currentTargets = spaces.value.map((space) => space.target);
+
+  const hasTargetsChanged = currentTargets.some((target, index) => {
+    return target !== previousTargets.value[index];
+  });
+
+  if (hasTargetsChanged) {
+    console.log("DEBOUNCED - Targets have changed");
+    previousTargets.value = [...currentTargets];
+    patchTargets();
+  }
 }, 200);
 
 watch(
@@ -253,8 +220,6 @@ watch(
     deep: true,
   }
 );
-
-const { participants, updateTarget } = useWebSocket();
 
 const connectedUsers = ref([
   {
@@ -270,6 +235,11 @@ const connectedUsers = ref([
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mario%20Romero-DqlVKba19kVahwvRSu3ds6cTSpPgdW.jfif",
   },
 ]);
+
+onMounted(() => {
+  //fegthit hte latest here
+  // http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com/elements/latest?sessionId=1
+});
 
 const tooltipVisible = ref(false);
 const tooltipContent = ref("");
@@ -334,24 +304,7 @@ const updateDiff = (space) => {
   space.diff = diff;
 };
 
-const addSpace = () => {
-  const newId = Math.max(...spaces.value.map((space) => space.id)) + 1;
-  const newTarget = Math.floor(Math.random() * 30) + 10;
-  const newCurrent = newTarget + Math.floor(Math.random() * 11) - 5;
-  const newSyncedValue = newTarget + Math.floor(Math.random() * 5) - 2;
-  spaces.value.push({
-    id: newId,
-    type: `Type ${String(newId).padStart(2, "0")}`,
-    current: newCurrent,
-    target: newTarget,
-    diff: newCurrent - newTarget,
-    syncedValue: newSyncedValue,
-    syncedBy:
-      connectedUsers.value[
-        Math.floor(Math.random() * connectedUsers.value.length)
-      ].name,
-  });
-};
+const addSpace = () => {};
 
 const showTooltip = (space, event) => {
   if (space.syncedBy) {

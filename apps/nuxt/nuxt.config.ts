@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "shadcn-nuxt",
     "@nuxthub/core",
+    "@nuxtus/nuxt-localtunnel",
   ],
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
@@ -13,6 +14,7 @@ export default defineNuxtConfig({
     port: 3000,
   },
 
+  //elements/latest
   shadcn: {
     /**
      * Prefix for all the imported component
