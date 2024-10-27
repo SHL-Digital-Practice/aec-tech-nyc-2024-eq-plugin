@@ -147,7 +147,7 @@
 
       <div class="flex items-center">
         <div class="w-4 h-4 rounded-full border-2 border-white mr-2"></div>
-        <span class="text-sm text-neutral-100">Synced Value</span>
+        <span class="text-sm text-neutral-100">Latest</span>
       </div>
     </div>
 
@@ -258,6 +258,8 @@ const tooltipVisible = ref(false);
 const tooltipContent = ref("");
 const tooltipX = ref(0);
 const tooltipY = ref(0);
+
+const { rooms } = useWebSocket();
 
 const settingsOpen = ref(false);
 

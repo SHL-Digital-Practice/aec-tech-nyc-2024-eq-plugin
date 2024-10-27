@@ -30,7 +30,7 @@
               <img
                 :src="getUserAvatar(notification.user)"
                 :alt="notification.user"
-                class="w-8 h-8 rounded-full mr-2"
+                class="w-8 h-8 rounded-full mr-2 object-cover"
               />
               <div>
                 <p class="text-sm text-gray-800">

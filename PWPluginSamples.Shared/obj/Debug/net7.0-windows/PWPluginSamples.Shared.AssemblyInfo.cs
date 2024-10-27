@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PWPluginSamples.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb4f2ba2925f5221fe9185b6365bda970a5863d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e866f029f6bc87ee5d0fe02dfaa3e02610989c1a")]
 [assembly: System.Reflection.AssemblyProductAttribute("PWPluginSamples.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PWPluginSamples.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
