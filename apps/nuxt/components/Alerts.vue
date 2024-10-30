@@ -1,6 +1,4 @@
 <template>
-  <button>dsasdssad</button>
-  {{ alerts }}
   <div class="alert-container">
     <transition-group name="alert" tag="div" class="space-y-2">
       <Alert

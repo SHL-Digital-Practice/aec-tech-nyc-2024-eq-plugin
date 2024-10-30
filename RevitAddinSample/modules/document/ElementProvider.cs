@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 static class ElementProvider
 {
     private static readonly HttpClient client = new HttpClient();
-    private static readonly string apiUrl = "http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com/elements";
+    private static readonly string apiUrl = "https://121f-38-104-71-142.ngrok-free.app/elements";
     private const string sessionId = "2";
 
     public static async Task<bool> CreateElementAsync(RoomData room)

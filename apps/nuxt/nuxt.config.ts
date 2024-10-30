@@ -26,4 +26,8 @@ export default defineNuxtConfig({
      */
     componentDir: "./components/ui",
   },
+  localtunnel: {
+    // local_https: false,
+    // allow_invalid_cert: true,
+  },
 });

@@ -1,6 +1,6 @@
 // composables/useWebSocket.js
 import { ref, onMounted, onUnmounted, watchEffect } from "vue";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import { useAlertQueue } from "@/composables/useAlertQueue"; // Import the alert queue composable
 
 interface Space {
@@ -38,26 +38,21 @@ export function useWebSocket() {
       avatar: string;
     }[]
   >([]);
-  let socket: any = null;
+  let socket: Socket | null = null;
 
   const { alerts, showAlert } = useAlertQueue(); // Get alerts and showAlert function
+  // const url = `http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com`;
+  const url = "https://121f-38-104-71-142.ngrok-free.app";
 
   async function fetchSpaces() {
     try {
       console.log("fetching spaces");
 
       const previous = await $fetch<ResponseData>(
-        `http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com/elements/latest?sessionId=${sessionId}`
+        `${url}/elements/latest?sessionId=${sessionId}`
       );
-      const live = await $fetch<ResponseData>(
-        `http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com/elements/live`
-      );
-
-      const targets = await $fetch<ResponseData>(
-        `http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com/targets`
-      );
-
-      console.log("previous, live, targets", previous, live, targets);
+      const live = await $fetch<ResponseData>(`${url}/elements/live`);
+      const targets = await $fetch<ResponseData>(`${url}/targets`);
 
       spaces.value = mapResponseToSpaces(previous, live, targets);
       showAlert("Spaces fetched successfully");
@@ -70,10 +65,7 @@ export function useWebSocket() {
   function initializeSocket() {
     const userId = useRoute().query.userId;
 
-    socket = io(
-      "http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com",
-      { query: { userId } }
-    );
+    socket = io(`${url}`, { query: { userId } });
 
     socket.on("connect", () => {
       showAlert("Connected to server");
@@ -88,9 +80,9 @@ export function useWebSocket() {
       participantIds.value = data;
     });
 
-    socket.on("events", async () => {
-      await fetchSpaces();
-      showAlert("Spaces updated from server event");
+    socket.on("events", () => {
+      console.log("event");
+      fetchSpaces();
     });
   }
 
@@ -122,10 +114,7 @@ export function useWebSocket() {
 
     const query = new URLSearchParams();
     query.set("ids", participantIds.value.join(","));
-    const response = await fetch(
-      `http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com/users?${query.toString()}`,
-      {}
-    );
+    const response = await fetch(`${url}/users?${query.toString()}`, {});
 
     participants.value = (await response.json()) as {
       name: string;
@@ -144,16 +133,13 @@ export function useWebSocket() {
       }, {});
       console.log("Targets updated:", targets);
 
-      const res = await fetch(
-        "http://eq-api-dev-alb-1162581781.us-east-2.elb.amazonaws.com/targets",
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(targets),
-        }
-      );
+      const res = await fetch(`${url}/targets`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(targets),
+      });
 
       showAlert("Targets patched successfully"); // Show alert for successful patch
     } catch (err) {
@@ -167,11 +153,11 @@ export function useWebSocket() {
     getParticipants();
   });
 
-  onUnmounted(() => {
-    if (socket) {
-      socket.disconnect();
-    }
-  });
+  // onUnmounted(() => {
+  //   if (socket) {
+  //     socket.disconnect();
+  //   }
+  // });
 
   onMounted(async () => {
     await fetchSpaces();
