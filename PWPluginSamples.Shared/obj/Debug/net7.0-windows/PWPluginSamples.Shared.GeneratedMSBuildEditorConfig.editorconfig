@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PWPluginSamples.Shared
-build_property.ProjectDir = C:\01_Repos\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\
+build_property.ProjectDir = C:\Dev\aec-tech-nyc-2024-eq-plugin\PWPluginSamples.Shared\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
